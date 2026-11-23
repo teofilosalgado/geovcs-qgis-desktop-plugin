@@ -81,11 +81,7 @@ class GeoVCSConnection:
     # reconnect to the old branch (a particularly subtle bug).
     @property
     def connection_string(self) -> str:
-        value = (
-            f"MySQL:{self.database}/{self.branch},"
-            f"host={self.host},"
-            f"port={self.port}"
-        )
+        value = f"MySQL:{self.database}/{self.branch},host={self.host},port={self.port}"
         if self.auth_config_id:
             value += f" authcfg='{self.auth_config_id}'"
         return value
@@ -154,7 +150,9 @@ class GeoVCSConnection:
 
             result = datasource.ExecuteSQL(query.SELECT__VERSION)
             if result is None:
-                message = gdal.GetLastErrorMsg() or "Unable to query the server version."
+                message = (
+                    gdal.GetLastErrorMsg() or "Unable to query the server version."
+                )
                 return GeoVCSConnectionTestResult(False, None, None, message.strip())
 
             dolt_version: str | None = ""
@@ -201,9 +199,7 @@ class GeoVCSLayer:
             # credentials through the stored auth configuration instead. QGIS
             # expects this suffix in the form `` authcfg='<id>'``.
             auth_param = (
-                f" authcfg='{manager.auth_config_id}'"
-                if manager.auth_config_id
-                else ""
+                f" authcfg='{manager.auth_config_id}'" if manager.auth_config_id else ""
             )
             self.uri = (
                 f"MySQL:{manager.database}/{manager.branch},"
@@ -474,7 +470,6 @@ class GeoVCSConnectionManager(metaclass=GeoVCSConnectionManagerMetaclass):
             raise RuntimeError(error_message.strip())
         if result is not None:
             datasource.ReleaseResultSet(result)
-        return None
 
     def _execute(self, sql: str) -> None:
         self._execute_on_datasource(self._get_datasource(), sql)
@@ -621,6 +616,10 @@ class GeoVCSConnectionManager(metaclass=GeoVCSConnectionManagerMetaclass):
             layer = datasource.GetLayer(index)
             if layer is None:
                 continue
+
+            if layer.GetName() == "qgis_projects":
+                continue
+
             yield GeoVCSLayerInfo(
                 name=layer.GetName(),
                 geometry_column=layer.GetGeometryColumn(),
@@ -641,9 +640,7 @@ class GeoVCSConnectionManager(metaclass=GeoVCSConnectionManagerMetaclass):
 
     def get_diffs(self, commit: str) -> Generator[GeoVCSDiff, None, None]:
         statistics_layer = self._query(
-            query.SELECT__DOLT_DIFF_STAT.substitute(
-                commit=_escape_sql_literal(commit)
-            )
+            query.SELECT__DOLT_DIFF_STAT.substitute(commit=_escape_sql_literal(commit))
         )
 
         try:
