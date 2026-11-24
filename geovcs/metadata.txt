@@ -9,14 +9,14 @@ email=jvictorteo2000@hotmail.com
 
 about=GeoVCS QGIS plugin.
 
-tracker=https://github.com/teofilosalgado/geovcs-qgis/issues
-repository=https://github.com/teofilosalgado/geovcs-qgis
+tracker=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin/issues
+repository=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin
 
 hasProcessingProvider=no
 
 tags=data, editing, database, version, control, system, sql
 
-homepage=https://github.com/teofilosalgado/geovcs-qgis
+homepage=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin
 category=Plugins
 icon=asset/icon/logo64.png
 
