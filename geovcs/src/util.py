@@ -19,7 +19,7 @@ def get_icon(file_name: str) -> QIcon:
 @cache
 def get_logo() -> QIcon:
     return QIcon(
-        os.path.join(os.path.dirname(__file__), "..", "asset", "icon", "logo.png")
+        os.path.join(os.path.dirname(__file__), "..", "asset", "icon", "logo64.png")
     )
 
 

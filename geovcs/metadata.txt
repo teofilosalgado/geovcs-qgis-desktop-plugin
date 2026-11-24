@@ -18,7 +18,7 @@ tags=data, editing, database, version, control, system, sql
 
 homepage=https://github.com/teofilosalgado/geovcs-qgis
 category=Plugins
-icon=asset/icon/logo.svg
+icon=asset/icon/logo64.png
 
 experimental=False
 deprecated=False
