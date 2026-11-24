@@ -1,23 +1,23 @@
 [general]
-name=GeoVCS
-qgisMinimumVersion=3.44
+name=GeoVCS QGIS Desktop Plugin
+description=GeoVCS QGIS Desktop plugin.
+qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
-description=GeoVCS QGIS plugin.
+
 version=0.0.1
 author=João Victor Teófilo Salgado
 email=jvictorteo2000@hotmail.com
 
 about=GeoVCS QGIS plugin.
-
 tracker=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin/issues
 repository=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin
 
 hasProcessingProvider=no
 
 tags=data, editing, database, version, control, system, sql
-
 homepage=https://github.com/teofilosalgado/geovcs-qgis-desktop-plugin
 category=Plugins
+server=False
 icon=asset/icon/logo64.png
 
 experimental=False
